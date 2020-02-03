@@ -46,7 +46,7 @@ namespace VideoStore
             return report;
         }
 
-        private static double GetRentalAmount(Rental rental)
+        public static double GetRentalAmount(Rental rental)
         {
             //determine amounts for each line
             double thisAmount = 0;

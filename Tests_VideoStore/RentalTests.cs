@@ -9,11 +9,14 @@ namespace Tests_VideoStore
     [TestFixture]
     public class RentalTests
     {
+        Movie regularMovie = new Movie("Regular", PriceCode.Regular);
+        Movie newMovie = new Movie("NewMovie", PriceCode.NewRelease);
+        Movie kids = new Movie("KidsMovie", PriceCode.Kids);
+
         [Test]
         public void TestGetFrequentRentPointsDouble()
         {
-            var newReleaseMovie = new Movie("Test", PriceCode.NewRelease);
-            var rental = new Rental(newReleaseMovie, 2);
+            var rental = new Rental(newMovie, 2);
 
             Assert.AreEqual(2, rental.GetFrequentRentPoints());
         }
@@ -21,10 +24,33 @@ namespace Tests_VideoStore
         [Test]
         public void TestGetFrequentRentPointsSinglePointNoNewRelease()
         {
-            var oldMoive = new Movie("Test", PriceCode.Regular);
-            var rental = new Rental(oldMoive, 10);
+            var rental = new Rental(regularMovie, 10);
 
             Assert.AreEqual(1, rental.GetFrequentRentPoints());
+        }
+
+        [Test]
+        public void TestGetRentalAmountRegular()
+        {
+            var rental = new Rental(regularMovie, 2);
+
+            Assert.AreEqual(2.0, rental.GetRentalAmount());
+        }
+
+        [Test]
+        public void TestGetRentalAmountRegularMoreThan2Days()
+        {
+            var rental = new Rental(regularMovie, 3);
+
+            Assert.AreEqual(3.5, rental.GetRentalAmount());
+        }
+
+        [Test]
+        public void TestGetRentalAmountNewRelease()
+        {
+            var rental = new Rental(newMovie, 3);
+
+            Assert.AreEqual(9.0, rental.GetRentalAmount());
         }
     }
 }
