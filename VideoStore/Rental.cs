@@ -1,24 +1,26 @@
-﻿using System;
-
-namespace VideoStore
+﻿namespace VideoStore
 {
-    public class Rental
+    public class Rental : IRental
     {
+        readonly Movie movie;
+        readonly int daysRented;
+
         public Rental(Movie movie, int daysRented)
         {
-            this.Movie = movie;
-            this.DaysRented = daysRented;
+            this.movie = movie;
+            this.daysRented = daysRented;
         }
 
-        public Movie Movie { get; private set; }
-
-        public int DaysRented { get; private set; }
+        public string GetItemTitle()
+        {
+            return this.movie.Title;
+        }
 
         public int GetFrequentRentPoints()
         {
             var points = 1;
 
-            if ((this.Movie.PriceCode == PriceCode.NewRelease) && this.DaysRented > 1) points++;
+            if ((this.movie.PriceCode == PriceCode.NewRelease) && this.daysRented > 1) points++;
 
             return points;
         }
@@ -26,20 +28,20 @@ namespace VideoStore
         public double GetRentalAmount()
         {
             double thisAmount = 0;
-            switch (this.Movie.PriceCode)
+            switch (this.movie.PriceCode)
             {
                 case PriceCode.Regular:
                     thisAmount += 2;
-                    if (this.DaysRented > 2)
-                        thisAmount += (this.DaysRented - 2) * 1.5;
+                    if (this.daysRented > 2)
+                        thisAmount += (this.daysRented - 2) * 1.5;
                     break;
                 case PriceCode.NewRelease:
-                    thisAmount += this.DaysRented * 3;
+                    thisAmount += this.daysRented * 3;
                     break;
                 case PriceCode.Kids:
                     thisAmount += 1.5;
-                    if (this.DaysRented > 3)
-                        thisAmount += (this.DaysRented - 3) * 1.5;
+                    if (this.daysRented > 3)
+                        thisAmount += (this.daysRented - 3) * 1.5;
                     break;
             }
 
