@@ -2,9 +2,9 @@
 
 namespace VideoStore
 {
-    internal static class Program
+    public static class Program
     {
-        private static readonly Movie[] Movies = new[]
+        public static readonly Movie[] Movies = new[]
         {
             new Movie("Frozen (2013)", PriceCode.Kids),
             new Movie("The Notebook (2004)", PriceCode.Regular),
