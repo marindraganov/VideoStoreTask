@@ -51,10 +51,8 @@ namespace VideoStore
                         break;
                 }
 
-                // add frequent renter points
-                frp++;
-                // add bonus for a two day new release rental
-                if ((rental.Movie.PriceCode == PriceCode.NewRelease) && rental.DaysRented > 1) frp++;
+                frp += rental.GetFrequentRentPoints();
+                
                 //show figures for this rental
                 report += $"\t{rental.Movie.Title}\t{thisAmount}\n";
                 totalAmount += thisAmount;
