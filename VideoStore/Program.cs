@@ -22,19 +22,16 @@ namespace VideoStore
             customer.RentMovie(Movies[3], daysRented: 4);
             customer.RentMovie(Movies[4], daysRented: 4);
 
+            var statement = new CustomerStatement(customer);
+
             Console.WriteLine("Plain text statement:");
-            PrintTextStatement(customer);
+            Console.WriteLine(statement.GenerateTextReport());
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("HTML statement:");
             PrintHtmlStatement(customer);
             Console.ReadKey();
-        }
-
-        private static void PrintTextStatement(Customer customer)
-        {
-            Console.WriteLine(CustomerStatement.GenerateTextReport(customer));
         }
 
         private static void PrintHtmlStatement(Customer customer)
