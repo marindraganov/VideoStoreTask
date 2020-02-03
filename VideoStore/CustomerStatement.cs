@@ -8,17 +8,18 @@
         private readonly string customerName;
         private readonly IEnumerable<IRental> customerRentals;
         private readonly double totalAmount;
+        private readonly double frequentRentPoints;
 
         public CustomerStatement(IStatementCustomer customer)
         {
             this.customerName = customer.Name;
             this.customerRentals = customer.Rentals.AsEnumerable();
             this.totalAmount = customer.Rentals.Sum(r => r.GetRentalAmount());
+            this.frequentRentPoints = customer.Rentals.Sum(r => r.GetFrequentRentPoints());
         }
 
         public string GenerateTextReport()
         {
-            // statement text will be appended here
             string report = $"{this.customerName}'s Rental Record\n";
             foreach (var rental in this.customerRentals)
             {
@@ -30,9 +31,7 @@
 
             //add footer lines
             report += $"Amount owed is {this.totalAmount}\n";
-
-            var frequentRentPoints = this.customerRentals.Sum(r => r.GetFrequentRentPoints());
-            report += $"{this.customerName} has {frequentRentPoints} frequent renter points";
+            report += $"{this.customerName} has {this.frequentRentPoints} frequent renter points";
             return report;
         }
     }
