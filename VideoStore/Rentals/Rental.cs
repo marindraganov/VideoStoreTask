@@ -36,7 +36,7 @@
 
         public abstract int GetFrequentRentPoints();
 
-        public double GetRentalAmount()
+        public virtual double GetRentalAmount()
         {
             double thisAmount = 0;
             switch (this.movie.PriceCode)

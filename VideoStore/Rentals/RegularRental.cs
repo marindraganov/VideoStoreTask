@@ -10,5 +10,17 @@
         {
             return 1;
         }
+
+        public override double GetRentalAmount()
+        {
+            double amount = 2;
+
+            if (this.daysRented > 2)
+            {
+                amount += (this.daysRented - 2) * 1.5;
+            }
+
+            return amount;
+        }
     }
 }
