@@ -12,5 +12,12 @@
 
             return points;
         }
+
+        public override double GetRentalAmount()
+        {
+            double amount = this.daysRented * 3; ;
+
+            return amount;
+        }
     }
 }
