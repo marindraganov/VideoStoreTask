@@ -34,7 +34,7 @@ namespace VideoStore
 
         private static void PrintTextStatement(Customer customer)
         {
-            Console.WriteLine(customer.Statement());
+            Console.WriteLine(CustomerStatement.GenerateTextReport(customer));
         }
 
         private static void PrintHtmlStatement(Customer customer)
