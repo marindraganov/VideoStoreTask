@@ -2,9 +2,6 @@
 {
     public class Movie
     {
-        /// <summary>
-        /// This is the movie constructor.
-        /// </summary>
         public Movie(string title, PriceCode priceCode)
         {
             this.Title = title;
