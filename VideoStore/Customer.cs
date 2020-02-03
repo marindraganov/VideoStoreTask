@@ -15,9 +15,9 @@ namespace VideoStore
 
         public string Name { get; private set; }
 
-        public void AddRental(Rental rental)
+        public void RentMovie(Movie movie, int daysRented)
         {
-            this.rentals.Add(rental);
+            this.rentals.Add(new Rental(movie, daysRented));
         }
 
         /// <summary>

@@ -16,11 +16,11 @@ namespace VideoStore
         public static void Main()
         {
             var customer = new Customer("Peshko");
-            customer.AddRental(new Rental(Movies[0], daysRented: 1));
-            customer.AddRental(new Rental(Movies[1], daysRented: 2));
-            customer.AddRental(new Rental(Movies[2], daysRented: 2));
-            customer.AddRental(new Rental(Movies[3], daysRented: 4));
-            customer.AddRental(new Rental(Movies[4], daysRented: 4));
+            customer.RentMovie(Movies[0], daysRented: 1);
+            customer.RentMovie(Movies[1], daysRented: 2);
+            customer.RentMovie(Movies[2], daysRented: 2);
+            customer.RentMovie(Movies[3], daysRented: 4);
+            customer.RentMovie(Movies[4], daysRented: 4);
 
             Console.WriteLine("Plain text statement:");
             PrintTextStatement(customer);
