@@ -20,7 +20,7 @@ namespace VideoStore
 
         public void RentMovie(Movie movie, int daysRented)
         {
-            this.rentals.Add(new Rental(movie, daysRented));
+            this.rentals.Add(Rental.Create(movie, daysRented));
         }
     }
 }
