@@ -26,7 +26,6 @@ namespace VideoStore
         public string Statement()
         {
             double totalAmount = 0;
-            int frp = 0;
 
             // statement text will be appended here
             string report = $"{this.Name}'s Rental Record\n";
@@ -51,8 +50,6 @@ namespace VideoStore
                         break;
                 }
 
-                frp += rental.GetFrequentRentPoints();
-                
                 //show figures for this rental
                 report += $"\t{rental.Movie.Title}\t{thisAmount}\n";
                 totalAmount += thisAmount;
@@ -60,7 +57,9 @@ namespace VideoStore
 
             //add footer lines
             report += $"Amount owed is {totalAmount}\n";
-            report += $"{this.Name} has {frp} frequent renter points";
+
+            var frequentRentPoints = this.rentals.Sum(r => r.GetFrequentRentPoints());
+            report += $"{this.Name} has {frequentRentPoints} frequent renter points";
             return report;
         }
     }
