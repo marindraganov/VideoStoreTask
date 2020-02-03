@@ -4,7 +4,7 @@
     {
         public string AddFooter(string text)
         {
-            throw new System.NotImplementedException();
+            return text;
         }
 
         public string AddHeader(string text)
@@ -17,9 +17,14 @@
             return $"{text}\n";
         }
 
+        public string Add(string text)
+        {
+            return text;
+        }
+
         public string AddTitle(string text)
         {
-            throw new System.NotImplementedException();
+            return $"\t{text}\t";
         }
     }
 }

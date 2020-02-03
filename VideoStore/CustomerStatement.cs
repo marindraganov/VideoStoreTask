@@ -23,15 +23,16 @@
             string report = txtProcessor.AddHeader($"{this.customerName}'s Rental Record");
             foreach (var rental in this.customerRentals)
             {
-                double thisAmount = rental.GetRentalAmount();
+                var amount = rental.GetRentalAmount();
+                var title = txtProcessor.AddTitle(rental.GetItemTitle());
 
-                //show figures for this rental
-                report += $"\t{rental.GetItemTitle()}\t{thisAmount}\n";
+                report += txtProcessor.AddLine($"{title}{amount}");
             }
 
-            //add footer lines
-            report += $"Amount owed is {this.totalAmount}\n";
-            report += $"{this.customerName} has {this.frequentRentPoints} frequent renter points";
+            var footerContent = txtProcessor.AddLine($"Amount owed is {this.totalAmount}");
+            footerContent += txtProcessor.Add($"{this.customerName} has {this.frequentRentPoints} frequent renter points");
+
+            report += txtProcessor.AddFooter(footerContent);
             return report;
         }
     }

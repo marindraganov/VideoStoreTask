@@ -9,5 +9,7 @@
         string AddFooter(string text);
 
         string AddLine(string text);
+
+        string Add(string text);
     }
 }
