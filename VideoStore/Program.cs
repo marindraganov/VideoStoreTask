@@ -25,13 +25,18 @@ namespace VideoStore
             var statement = new CustomerStatement(customer);
 
             Console.WriteLine("Plain text statement:");
-            Console.WriteLine(statement.GenerateTextReport());
+            Console.WriteLine(statement);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("HTML statement:");
             PrintHtmlStatement(customer);
             Console.ReadKey();
+        }
+
+        private static void PrintTextStatement(CustomerStatement statement)
+        {
+            statement.GenerateTextReport(new SimpleTextProcessors());
         }
 
         private static void PrintHtmlStatement(Customer customer)

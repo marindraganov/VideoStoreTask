@@ -26,9 +26,10 @@ namespace Tests_VideoStore
             customer.RentMovie(movies[3], daysRented: 4);
             customer.RentMovie(movies[4], daysRented: 4);
 
-            //var txt = Regex.Escape(customer.Statement());
+            var statement = new CustomerStatement(customer);
+            var txtProcessor = new SimpleTextProcessors();
             Assert.AreEqual("Peshko's\\ Rental\\ Record\\n\\tFrozen\\ \\(2013\\)\\t1\\.5\\n\\tThe\\ Notebook\\ \\(2004\\)\\t2\\n\\tWhat\\ Women\\ Want\\ \\(2000\\)\\t2\\n\\tRambo:\\ Last\\ Blood\\ \\(2019\\)\\t12\\n\\tBad\\ Boys\\ for\\ Life\\ \\(2020\\)\\t12\\nAmount\\ owed\\ is\\ 29\\.5\\nPeshko\\ has\\ 7\\ frequent\\ renter\\ points", 
-                Regex.Escape(new CustomerStatement(customer).GenerateTextReport()));
+                Regex.Escape(statement.GenerateTextReport(txtProcessor)));
         }
     }
 }

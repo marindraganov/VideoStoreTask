@@ -18,9 +18,9 @@
             this.frequentRentPoints = customer.Rentals.Sum(r => r.GetFrequentRentPoints());
         }
 
-        public string GenerateTextReport()
+        public string GenerateTextReport(ITextProcessor txtProcessor)
         {
-            string report = $"{this.customerName}'s Rental Record\n";
+            string report = txtProcessor.AddHeader($"{this.customerName}'s Rental Record");
             foreach (var rental in this.customerRentals)
             {
                 double thisAmount = rental.GetRentalAmount();
