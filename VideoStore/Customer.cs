@@ -31,7 +31,7 @@ namespace VideoStore
             string report = $"{this.Name}'s Rental Record\n";
             foreach (var rental in this.rentals)
             {
-                double thisAmount = GetRentalAmount(rental);
+                double thisAmount = rental.GetRentalAmount();
 
                 //show figures for this rental
                 report += $"\t{rental.Movie.Title}\t{thisAmount}\n";
@@ -44,30 +44,6 @@ namespace VideoStore
             var frequentRentPoints = this.rentals.Sum(r => r.GetFrequentRentPoints());
             report += $"{this.Name} has {frequentRentPoints} frequent renter points";
             return report;
-        }
-
-        public static double GetRentalAmount(Rental rental)
-        {
-            //determine amounts for each line
-            double thisAmount = 0;
-            switch (rental.Movie.PriceCode)
-            {
-                case PriceCode.Regular:
-                    thisAmount += 2;
-                    if (rental.DaysRented > 2)
-                        thisAmount += (rental.DaysRented - 2) * 1.5;
-                    break;
-                case PriceCode.NewRelease:
-                    thisAmount += rental.DaysRented * 3;
-                    break;
-                case PriceCode.Kids:
-                    thisAmount += 1.5;
-                    if (rental.DaysRented > 3)
-                        thisAmount += (rental.DaysRented - 3) * 1.5;
-                    break;
-            }
-
-            return thisAmount;
         }
     }
 }
