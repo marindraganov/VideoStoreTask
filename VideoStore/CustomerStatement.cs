@@ -6,13 +6,13 @@
     public class CustomerStatement
     {
         private readonly string customerName;
-        private readonly IEnumerable<Rental> customerRentals;
+        private readonly IEnumerable<IRental> customerRentals;
         private readonly double totalAmount;
 
-        public CustomerStatement(Customer customer)
+        public CustomerStatement(IStatementCustomer customer)
         {
             this.customerName = customer.Name;
-            this.customerRentals = customer.Rentals;
+            this.customerRentals = customer.Rentals.AsEnumerable();
             this.totalAmount = customer.Rentals.Sum(r => r.GetRentalAmount());
         }
 
@@ -25,7 +25,7 @@
                 double thisAmount = rental.GetRentalAmount();
 
                 //show figures for this rental
-                report += $"\t{rental.Movie.Title}\t{thisAmount}\n";
+                report += $"\t{rental.GetItemTitle()}\t{thisAmount}\n";
             }
 
             //add footer lines

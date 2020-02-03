@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace VideoStore
 {
-    public class Customer
+    public class Customer : IStatementCustomer
     {
         private readonly List<Rental> rentals;
 
@@ -15,13 +16,7 @@ namespace VideoStore
 
         public string Name { get; private set; }
 
-        public IReadOnlyList<Rental> Rentals 
-        { 
-            get 
-            { 
-                return this.rentals.AsReadOnly(); 
-            } 
-        }
+        public IReadOnlyCollection<IRental> Rentals => this.rentals.AsReadOnly();
 
         public void RentMovie(Movie movie, int daysRented)
         {
